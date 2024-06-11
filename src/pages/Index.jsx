@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Container, VStack, Text, Input, Button, Box } from "@chakra-ui/react";
+import { Container, VStack, Text, Input, Button, Box, Heading } from "@chakra-ui/react";
 import Papa from "papaparse";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
@@ -48,12 +48,12 @@ const Index = () => {
   return (
     <Container centerContent maxW="container.md" height="100vh" display="flex" flexDirection="column" justifyContent="center" alignItems="center">
       <VStack spacing={4}>
-        <Text fontSize="2xl">Sensor Data Visualization</Text>
-        <Input type="file" accept=".csv" onChange={handleFileUpload} />
+        <Heading as="h1" size="2xl" color="primary.600">Sensor Data Visualization</Heading>
+        <Input type="file" accept=".csv" onChange={handleFileUpload} variant="outline" />
         {data.length > 0 && (
           <>
             <Text>Select Building:</Text>
-            <Input as="select" onChange={handleBuildingChange} value={selectedBuilding}>
+            <Input as="select" onChange={handleBuildingChange} value={selectedBuilding} variant="outline">
               <option value="" disabled>Select a building</option>
               {Object.keys(buildingData).map((building) => (
                 <option key={building} value={building}>{building}</option>
@@ -64,15 +64,15 @@ const Index = () => {
         {selectedBuilding && (
           <>
             <Box width="100%" mt={4}>
-              <Text fontSize="xl">Temperature</Text>
+              <Text fontSize="xl" color="secondary.600">Temperature</Text>
               {renderChart("temperature", "#8884d8")}
             </Box>
             <Box width="100%" mt={4}>
-              <Text fontSize="xl">Humidity</Text>
+              <Text fontSize="xl" color="secondary.600">Humidity</Text>
               {renderChart("humidity", "#82ca9d")}
             </Box>
             <Box width="100%" mt={4}>
-              <Text fontSize="xl">CO2 Levels</Text>
+              <Text fontSize="xl" color="secondary.600">CO2 Levels</Text>
               {renderChart("co2", "#ff7300")}
             </Box>
           </>
